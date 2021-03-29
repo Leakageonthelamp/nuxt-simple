@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  engder-nuxt:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: engder-nuxt
+    restart: always
+    ports:
+      - '3030:3030'
+    command: 'nuxt start'
+
+  gpr-nginx:
+    image: nginx:stable-alpine
+    ports:
+      - '80:80'
+    volumes:
+      - ./build/helm/engder-nuxt/static/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./build/helm/engder-nuxt/static/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - engder-nuxt

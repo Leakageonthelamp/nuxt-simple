@@ -1,0 +1,137 @@
+// $nav-background: #ffffff !important;
+$nav-color: #202020 !important;
+$nav-active-color: #ee510e !important;
+$body-background: #f8f8f8;
+$body-color: #343434;
+$primary-color: #f46500;
+$secondary-color: #fff5ef;
+$danger-color: rgba(244, 54, 60, 0.1);
+
+$yellow: #ffd400;
+$orange: #f46500;
+$red: #f4363c;
+
+$green-1: #219653;
+$green-2: #27ae60;
+$green-3: #6fcf97;
+
+$blue-1: #2f80ed;
+$blue-2: #2d9cdb;
+$blue-3: #56ccf2;
+
+$purple-1: #9b51e0;
+$purple-2: #bb6bd9;
+
+$theme-colors: (
+  "primary": $orange,
+  "secondary": $secondary-color,
+  "danger": $red
+);
+$breadcrumb-divider: quote(">");
+$gs-1: #333333;
+$gs-2: #4f4f4f;
+$gs-3: #828282;
+$gs-4: #bdbdbd;
+$gs-5: #e0e0e0;
+$gs-6: #f2f2f2;
+
+$almost-white: #c8c8c8;
+$pure-white: #ffffff;
+
+// $serif-font-family: 'Lato', 'Kanit', serif !important;
+// $serif-font-family: 'Aileron', 'Kanit', 'Tahoma', serif !important;
+// $sans-serif-font-family: 'Aileron', 'Kanit', sans-serif !important;
+
+$serif-font-family: "Rubik", "Kanit", "Tahoma", serif !important;
+$sans-serif-font-family: "Rubik", "Kanit", sans-serif !important;
+$headings-font-weight: bold;
+$font-family-sans-serif: $sans-serif-font-family;
+$font-family-base: $font-family-sans-serif;
+
+// Z-index
+$z-index-nav-bar: 1000;
+$z-index-popup: 3000;
+$z-index-loading: 5000;
+
+// Typography
+$line-height-ratio: 1.4;
+$fs-h2: rem(24px);
+$fw-bold: 700;
+
+// Forms
+// $input-padding-y: .45rem;
+// $input-btn-padding-y: .65rem;
+// $input-bg: $gs-4;
+// $input-border-color: lighten($gs-4, 15%);
+// $input-color: $gs-0;
+// $input-line-height: 1rem;
+
+// Transition Curves
+$ease-in-out-expo-tc: cubic-bezier(0.19, 1, 0.22, 1);
+$ease-out-quint-tc: cubic-bezier(0.23, 1, 0.32, 1);
+$primary-tc: cubic-bezier(0.28, 0.84, 0.42, 1);
+$ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+// Border Radius
+$popup-br: 20px;
+
+// Custom mixins
+@mixin font-weight($weight) {
+  $normalized-weights: (
+    light: 300,
+    regular: 400,
+    bold: 700,
+    super-bold: 900
+  );
+
+  $output: $weight;
+  @if map-has-key($normalized-weights, $weight) {
+    $output: map-get($normalized-weights, $weight);
+  }
+
+  font-weight: $output;
+}
+
+@mixin font-family($type) {
+  $types: (
+    serif: $serif-font-family,
+    sans-serif: $sans-serif-font-family
+  );
+
+  $output: $serif-font-family;
+  @if map-has-key($types, $type) {
+    $output: map-get($types, $type);
+  }
+
+  font-family: $output;
+}
+
+@mixin line-height($font-size) {
+  line-height: $font-size * $line-height-ratio;
+}
+
+@mixin font-size($font-size) {
+  font-size: $font-size;
+  line-height: $font-size * $line-height-ratio;
+}
+
+@mixin primary-box-shadow() {
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+@mixin padding($size) {
+  padding: $size * 1rem;
+  @include media-breakpoint-up(md) {
+    padding: $size * 1.6rem;
+  }
+}
+
+@mixin media-breakpoint-up-custom($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";

@@ -1,0 +1,55 @@
+# Default values for engder-nuxt.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  repository: 248783859424.dkr.ecr.ap-southeast-1.amazonaws.com/engder-nuxt
+  tag: latest
+  pullPolicy: IfNotPresent
+
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 1
+
+imagePullSecrets:
+  - name: ap-southeast-1-ecr-registry
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: engder.globish.co.th
+      paths: ["/"]
+
+  tls:
+    - secretName: engder-globish-co-th-tls
+      hosts:
+        - engder.globish.co.th
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    memory: 1Gi
+  requests:
+    memory: 0.5Gi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

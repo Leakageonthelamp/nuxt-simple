@@ -1,0 +1,11 @@
+apiVersion: v1
+appVersion: "1.0"
+description: "A Helm chart for engder-nuxt frontend project"
+name: engder-nuxt
+version: 0.1.0
+sources:
+  - "https://bitbucket.org/globish/engder-nuxt/src/master/"
+maintainers:
+  - name: "Parinthorn Saithong"
+    email: "parinthorn.sa@globish-academia.com"
+    url: "https://github.com/pirsquareff"

@@ -1,0 +1,13 @@
+# This is a sample build configuration for JavaScript.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+# image: node:6.9.4
+
+pipelines:
+  branches:
+    master:
+    - step:
+        script:
+          - ssh 139.59.227.218 -t 'cd /var/www/engder-nuxt; git checkout package-lock.json; git pull; npm install; npm run build; pm2 restart engder'

@@ -1,0 +1,129 @@
+/*========================================================
+        VARIABLE COLORS
+=========================================================*/
+$serif-font-family: "Rubik", "Kanit", "Tahoma", serif !important;
+$sans-serif-font-family: "Rubik", "Kanit", sans-serif !important;
+
+$serif-font-family--kids: "FredokaOne", "Kanit", "Tahoma", serif !important;
+$sans-serif-font-family--kids: "FredokaOne", "Kanit", sans-serif !important;
+
+
+$nav-background: #ffffff !important;
+$nav-color: #202020 !important;
+$nav-active-color: #ee510e !important;
+$body-background: #f8f8f8;
+$body-color: #343434;
+$breadcrumb-background: #efefef !important;
+
+$nav-background--kids: #ffffff !important;
+$nav-color--kids: #202020 !important;
+$nav-active-color--kids: #ee510e !important;
+$body-background--kids: linear-gradient(
+    70deg,
+    #f8a266 30%,
+    rgba(0, 0, 0, 0) 30%
+  ),
+  linear-gradient(150deg, #ffd479 60%, rgba(36, 106, 187, 0.5) 60%);
+$body-color--kids: #343434;
+$breadcrumb-background--kids: #efefef !important;
+
+$nav-background--dark: #202020 !important;
+$nav-color--dark: #ffffff !important;
+$nav-active-color--dark: #ee510e !important;
+$body-background--dark: #343434;
+$body-color--dark: #f8f8f8;
+$breadcrumb-background--dark: #4f4f4f !important;
+
+$primary-color: #ffb820;
+$primary-color--dark: #f46500;
+// $secondary-color: #fff5ef;
+// $danger-color: rgba(244, 54, 60, 0.1);
+
+$card-background: #fff;
+$card-background--dark: #272727;
+// $card-background--kids: #f0e9d9;
+$card-background--kids: #fff;
+$btn-background: #ffffff;
+$btn-background--dark: #323232;
+$btn-background-hover: $primary-color;
+$btn-background-hover--dark: #363738;
+$btn-color-hover: #ffffff;
+$btn-color-hover--dark: $primary-color--dark;
+$bullet-game-color: #4f4f4f;
+$bullet-game-color-hover: #3d3c3c;
+$correct-game-color: #479969;
+$wrong-game-color: #bb5555;
+$primary-color-hover--dark: #ad4800;
+$card-next-background: linear-gradient(120deg,#ffffff 60%, #ffb820 60%);
+$card-next-background--dark: linear-gradient(120deg,#272727 60%, #f46500 60%);
+
+$c-white: #fff;
+$c-black: #000;
+$c-red-50: #73345e;
+$c-red-25: #432958;
+$c-navy: #0f0e3d;
+$c-text: #8285a7;
+$primary-gradient-start: #d94e47;
+$primary-gradient-end: #df1165;
+
+$themes: (
+  default: (
+    serif: $serif-font-family,
+    sans-serif: $sans-serif-font-family,
+    nav-background: $nav-background,
+    nav-color: $nav-color,
+    nav-active-color: $nav-active-color,
+    breadcrumb-background: $breadcrumb-background,
+    body-background: $body-background,
+    body-color: $body-color,
+    card-background: $card-background,
+    card-next-background: $card-next-background,
+    btn-background: $btn-background,
+    btn-background-hover: $btn-background-hover,
+    btn-color-hover: $btn-color-hover,
+    font-color: $nav-background--dark
+  ),
+  dark: (
+    serif: $serif-font-family,
+    sans-serif: $sans-serif-font-family,
+    nav-background: $nav-background--dark,
+    nav-color: $nav-color--dark,
+    nav-active-color: $nav-active-color--dark,
+    breadcrumb-background: $breadcrumb-background--dark,
+    body-background: $body-background--dark,
+    body-color: $body-color--dark,
+    card-background: $card-background--dark,
+    card-next-background: $card-next-background--dark,
+    btn-background: $btn-background--dark,
+    btn-background-hover: $btn-background-hover--dark,
+    btn-color-hover: $btn-color-hover--dark,
+    bullet-game-color: $bullet-game-color,
+    bullet-game-color-hover: $bullet-game-color-hover,
+    primary-color: $primary-color--dark,
+    primary-color-hover: $primary-color-hover--dark,
+    correct-color: $correct-game-color,
+    wrong-color: $wrong-game-color,
+    font-color: $nav-background
+  ),
+  kids: (
+    serif: $serif-font-family--kids,
+    sans-serif: $sans-serif-font-family--kids,
+    nav-background: $nav-background--kids,
+    nav-color: $nav-color--kids,
+    nav-active-color: $nav-active-color--kids,
+    breadcrumb-background: $breadcrumb-background--kids,
+    body-background: $body-background--kids,
+    body-color: $body-color--kids,
+    card-background: $card-background--kids,
+    btn-background: $btn-background,
+    btn-background-hover: $btn-background-hover,
+    btn-color-hover: $btn-color-hover,
+    bullet-game-color: $bullet-game-color,
+    bullet-game-color-hover: $bullet-game-color-hover,
+    primary-color: $primary-color--dark,
+    primary-color-hover: $primary-color-hover--dark,
+    correct-color: $correct-game-color,
+    wrong-color: $wrong-game-color,
+    font-color: $nav-background
+  )
+);

@@ -1,0 +1,128 @@
+kind: pipeline
+type: kubernetes
+name: default
+
+concurrency:
+  limit: 1
+
+clone:
+  disable: true
+
+steps:
+  - name: clone
+    image: drone/git
+    when:
+      event:
+        - push
+      branch:
+        - master
+
+  - name: install-dependencies
+    image: node:10.17.0-alpine
+    commands:
+      - yarn
+    when:
+      event:
+        - push
+      branch:
+        - master
+
+  - name: build-docker-image-master
+    image: plugins/ecr
+    environment:
+      API_HOST: 127.0.0.1
+      API_PORT: 3030
+      API_PREFIX: /webhook
+      NODE_ENV: production
+      API_BASE_URL: https://api.globish.co.th/webhook
+    settings:
+      access_key:
+        from_secret: aws_access_key_id
+      secret_key:
+        from_secret: aws_secret_access_key
+      repo: engder-nuxt
+      registry: 248783859424.dkr.ecr.ap-southeast-1.amazonaws.com
+      region: ap-southeast-1
+      force_tag: true
+      tags:
+        - "latest"
+        - "${DRONE_BRANCH}"
+        - "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"
+      dockerfile: Dockerfile.prod
+      build_args:
+        - API_HOST=${API_HOST}
+        - API_PORT=${API_PORT}
+        - API_PREFIX=${API_PREFIX}
+        - NODE_ENV=${NODE_ENV}
+        - API_BASE_URL=${API_BASE_URL}
+      insecure: false
+    when:
+      event:
+        - push
+      branch:
+        - master
+
+  - name: deploy-helm-master
+    image: pelotech/drone-helm3
+    environment:
+      KUBE_API_SERVER: https://5DC8E271AFA9D164E7896000AC48BA53.gr7.ap-southeast-1.eks.amazonaws.com
+      KUBE_SERVICE_ACCOUNT: tiller-token-qmhvr
+      KUBE_TOKEN:
+        from_secret: kubernetes_token
+      KUBE_CERTIFICATE:
+        from_secret: kubernetes_certificate
+    settings:
+      skip_tls_verify: false
+      mode: upgrade
+      chart: ./build/helm/engder-nuxt
+      release: engder-nuxt-master
+      namespace: globish-application
+      debug: false
+      timeout: 180
+      values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
+    when:
+      event:
+        - push
+      branch:
+        - master
+
+  - name: notify-slack
+    image: plugins/slack
+    settings:
+      webhook: https://hooks.slack.com/services/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
+      channel: devops
+      username: Drone
+      icon_url: https://pbs.twimg.com/profile_images/1106628286107381761/R_wMcCqN_400x400.png
+      template: >
+        {{#success build.status}}
+          {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build #{{build.number}} succeeded on {{uppercasefirst build.event}}. Good job {{ build.author }}. 👍🏻
+        {{else}}
+          {{repo.name}} ({{build.branch}}) <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{truncate build.commit 8}}> build #{{build.number}} failed on {{uppercasefirst build.event}}. Fix me please {{ build.author }}. 😢
+        {{/success}}
+    when:
+      status:
+        - failure
+        - success
+      branch:
+        - master
+
+# services:
+#   - name: docker
+#     image: docker:19.03-dind
+#     privileged: true
+#     volumes:
+#       - name: dockersock
+#         path: /var/run
+
+# image_pull_secrets:
+#   - dockerconfig
+
+# volumes:
+#   - name: dockersock
+#     temp: {}
+
+# Per repository secret
+## drone encrypt globish/engder-nuxt <SECRET>
+
+# Per organisation secret
+## drone orgsecret add Globish [name] [data]

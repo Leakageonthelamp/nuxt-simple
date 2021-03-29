@@ -1,0 +1,18 @@
+{
+  "data": [
+    { "value": "N.", "text": "Noun" },
+    { "value": "Pron.", "text": "Pronoun" },
+    { "value": "Adj.", "text": "Adjective" },
+    { "value": "V.", "text": "Verb" },
+    { "value": "Phrasal Verb", "text": "Phrasal Verb" },
+    { "value": "Modal Verb", "text": "Modal Verb" },
+    { "value": "Adv.", "text": "Adverb" },
+    { "value": "Prep.", "text": "Preposition" },
+    { "value": "Exclam.", "text": "Exclamation" },
+    { "value": "Phrase", "text": "Phrase" },
+    { "value": "Conj.", "text": "Conjunction" },
+    { "value": "In.", "text": "Interjection" },
+    { "value": "Idiom", "text": "Idiom" },
+    { "value": "No.", "text": "Ordinal Number" }
+  ]
+}

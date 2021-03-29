@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  nginx.conf: |-
+{{ .Files.Get "static/nginx/nginx.conf" | indent 4 }}
+  default.conf: |-
+{{ .Files.Get "static/nginx/default.conf" | indent 4 }}
