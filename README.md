@@ -1,4 +1,4 @@
-# engder-nuxt
+# nuxt-simple
 
 > Nuxt.js project
 
